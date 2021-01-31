@@ -15,11 +15,11 @@ namespace S3FileUploader
 			Buckets = new ObservableCollection<S3Bucket>();
 		}
 
-		public async Task GetBucketList(string awsAccessKeyId, string secretAccessKey)
+		public async Task GetBucketList(Credentials credentials)
 		{
 			Buckets.Clear();
 
-			AmazonS3Client client = new AmazonS3Client(awsAccessKeyId, secretAccessKey, Amazon.RegionEndpoint.EUWest2);
+			AmazonS3Client client = new AmazonS3Client(credentials.AccessKeyId, credentials.SecretAccessKey, Amazon.RegionEndpoint.EUWest2);
 
 			ListBucketsResponse response = await client.ListBucketsAsync();
 			foreach (S3Bucket bucket in response.Buckets)

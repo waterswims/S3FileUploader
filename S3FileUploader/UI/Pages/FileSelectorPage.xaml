@@ -1,0 +1,35 @@
+﻿<Page x:Class="S3FileUploader.FileSelectorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:S3FileUploader"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FileSelectorPage">
+
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"></ColumnDefinition>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+			<ColumnDefinition Width="Auto"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<Label Grid.Column="0" Grid.Row="0" x:Name="filesLabel" Content="Select Files To Upload" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+
+		<CheckBox Grid.Row="1" Grid.Column="0" x:Name="sequentialCheckBox" Content="Upload files sequentially" VerticalAlignment="Center"/>
+		<Button x:Name="chooseFilesButton" Content="Choose Files..." Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,50,0" Click="chooseFilesButton_Click"/>
+
+		<DataGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" x:Name="filesGrid" ItemsSource="{Binding Path=Files}" AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="File Name" Binding="{Binding Name}"/>
+				<DataGridTextColumn Header="Size (Bytes)" Binding="{Binding Length}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Page>
