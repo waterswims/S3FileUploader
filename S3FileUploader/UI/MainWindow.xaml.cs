@@ -117,7 +117,12 @@ namespace S3FileUploader
 
 		private void BucketSelectorPage_NewBucketSelected(object sender, Amazon.S3.Model.S3Bucket e)
 		{
-			// Do Nothing
+			foreach (Page page in pages)
+			{
+				IRequiresBucket requiresBucket = page as IRequiresBucket;
+				if (requiresBucket != null)
+					requiresBucket.BucketName = e.BucketName;
+			}
 		}
 
 		#endregion

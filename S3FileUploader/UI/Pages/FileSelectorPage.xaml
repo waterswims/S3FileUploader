@@ -18,6 +18,7 @@
 			<RowDefinition Height="Auto"></RowDefinition>
 			<RowDefinition Height="Auto"></RowDefinition>
 			<RowDefinition></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
 		</Grid.RowDefinitions>
 
 		<Label Grid.Column="0" Grid.Row="0" x:Name="filesLabel" Content="Select Files To Upload" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
@@ -27,9 +28,13 @@
 
 		<DataGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" x:Name="filesGrid" ItemsSource="{Binding Path=Files}" AutoGenerateColumns="False">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="File Name" Binding="{Binding Name}"/>
-				<DataGridTextColumn Header="Size (Bytes)" Binding="{Binding Length}"/>
+				<DataGridTextColumn Header="File Name" Binding="{Binding Name}" IsReadOnly="True"/>
+				<DataGridTextColumn Header="Size (Bytes)" Binding="{Binding Length}" IsReadOnly="True"/>
+				<DataGridTextColumn Header="Status" Binding="{Binding Status}" IsReadOnly="True"/>
 			</DataGrid.Columns>
 		</DataGrid>
+
+		<Label Grid.Row="3" Grid.Column="1" x:Name="errorLabel" Content="" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+		<Button x:Name="uploadFilesButton" Content="Upload Files" Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,50,0" Click="uploadFilesButton_Click"/>
 	</Grid>
 </Page>
